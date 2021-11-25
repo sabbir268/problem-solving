@@ -26,7 +26,9 @@ func conAbs(n int32) int32 {
 
 func pickingNumbers(a []int32) int32 {
 	var res int32
-	sort.Slice(a, func(i, j int) bool { return a[i] < a[j] })
+	sort.Slice(a, func(i, j int) bool {
+		return a[i] < a[j]
+	})
 	fmt.Println(a)
 	i := int32(0)
 	j := int32(1)
