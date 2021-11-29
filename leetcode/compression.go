@@ -9,13 +9,29 @@ func compress(chars []byte) int {
 	} else if len(chars) == 1 {
 		return 1
 	} else {
-		var i, j int = 0, 1
-		for i < len(chars) && j < len(chars) {
-			if chars[i] == chars[j] {
+		var i, j, count int
+		for i = 0; i < len(chars); i++ {
+			if i == 0 {
+				count = 1
+			} else if chars[i] != chars[i-1] {
+				chars[j] = chars[i-1]
 				j++
+				if count > 1 {
+					for _, c := range fmt.Sprintf("%d", count) {
+						chars[j] = byte(c)
+						j++
+					}
+				}
+				count = 1
 			} else {
-				i++
-				chars[i] = chars[j]
+				count++
+			}
+		}
+		chars[j] = chars[i-1]
+		j++
+		if count > 1 {
+			for _, c := range fmt.Sprintf("%d", count) {
+				chars[j] = byte(c)
 				j++
 			}
 		}
