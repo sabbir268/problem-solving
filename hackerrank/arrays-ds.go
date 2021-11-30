@@ -18,11 +18,22 @@ import (
 
 func reverseArray(a []int32) []int32 {
 	n := int32(len(a))
-	for i := int32(0); i < n/2; i++ {
-		a[i], a[n-i-1] = a[n-i-1], a[i]
+	ra := make([]int32, n, n)
+	i := n
+	for i >= 1 {
+		ra[n-i] = a[i-1]
+		i--
 	}
 
-	return a
+	return ra
+
+	// another approach
+	// n := int32(len(a))
+	// for i := int32(0); i < n/2; i++ {
+	// 	a[i], a[n-i-1] = a[n-i-1], a[i]
+	// }
+
+	// return a
 }
 
 func main() {
